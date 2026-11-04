@@ -24,8 +24,8 @@
 | `id` | TEXT (UUID), primary key |
 | `user_id` | TEXT (UUID), foreign key → `users.id` |
 | `equipment_id` | TEXT (UUID), foreign key → `equipment.id` |
-| `starts_at` | INTEGER |
-| `ends_at` | INTEGER |
+| `starts_at` | TEXT (ISO 8601 UTC, `YYYY-MM-DDTHH:mm:ss.sssZ`) |
+| `ends_at` | TEXT (ISO 8601 UTC, `YYYY-MM-DDTHH:mm:ss.sssZ`) |
 | `status` | TEXT |
 
 ## `idempotency_results`
