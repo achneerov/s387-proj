@@ -2,7 +2,7 @@ import path from 'node:path';
 
 export default {
   client: 'better-sqlite3',
-  connection: { filename: path.join(import.meta.dirname, 'data/gearreserve.sqlite') },
+  connection: { filename: process.env.DATABASE_PATH || path.join(import.meta.dirname, 'data/gearreserve.sqlite') },
   useNullAsDefault: true,
   pool: {
     min: 1,

@@ -37,4 +37,7 @@ app.use((error, req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`GearReserve: http://localhost:${port}`));
+const server = app.listen(port, (error) => {
+  if (error) throw error;
+  console.log(`GearReserve: http://localhost:${server.address().port}`);
+});
