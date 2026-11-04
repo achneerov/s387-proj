@@ -2,13 +2,22 @@ import express from 'express';
 import path from 'node:path';
 import * as OpenApiValidator from 'express-openapi-validator';
 import api from './routes/api.js';
+import { authenticate } from './services/auth.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(import.meta.dirname, '../public')));
 app.use(OpenApiValidator.middleware({
-  apiSpec: path.join(import.meta.dirname, '../openapi.yaml')
+  apiSpec: path.join(import.meta.dirname, '../openapi.yaml'),
+  validateSecurity: {
+    handlers: {
+      bearerAuth: async (req) => {
+        req.user = await authenticate(req.get('Authorization'));
+        return true;
+      }
+    }
+  }
 }));
 app.use('/api/v1', api);
 
