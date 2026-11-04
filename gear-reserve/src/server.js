@@ -13,7 +13,7 @@ app.use(OpenApiValidator.middleware({
   validateSecurity: {
     handlers: {
       bearerAuth: async (req) => {
-        req.user = await authenticate(req.get('Authorization'));
+        req.user = await authenticate(req);
         return true;
       }
     }
