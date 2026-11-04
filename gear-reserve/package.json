@@ -2,11 +2,16 @@
   "name": "gear-reserve",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "db:reset": "node scripts/reset-db.js"
   },
   "dependencies": {
-    "express": "^5.3.0"
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.3.0",
+    "knex": "^3.3.0"
   }
 }
