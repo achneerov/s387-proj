@@ -4,9 +4,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GearReserve</title>
+    <style>
+      body { font-family: sans-serif; max-width: 800px; margin: 24px auto; padding: 0 16px; }
+      label { display: block; margin: 8px 0; }
+      input { width: 320px; max-width: 100%; }
+      pre { background: #eee; padding: 12px; overflow: auto; }
+    </style>
+    <script type="module" src="/app.js"></script>
   </head>
   <body>
     <h1>GearReserve</h1>
-    <p>Equipment reservation demo.</p>
+    <h2>1. Login</h2>
+    <form id="login">
+      <label>Email <input name="email" type="email" value="alice@gearreserve.test" required></label>
+      <label>Password <input name="password" type="password" value="demo-password" required></label>
+      <button>Log in</button>
+    </form>
+    <p id="account">Not logged in. Refreshing clears the login.</p>
+
+    <h2>2. Equipment</h2>
+    <button id="equipment">Get equipment</button>
+
+    <h2>3. Create reservation</h2>
+    <form id="booking">
+      <label>Equipment <select name="equipmentId" id="equipment-list" required></select></label>
+      <label>Start (local time) <input name="startsAt" type="datetime-local" required></label>
+      <label>End (local time) <input name="endsAt" type="datetime-local" required></label>
+      <label>Idempotency key <input name="key" id="booking-key" required></label>
+      <button type="button" data-new-key="booking-key">New key</button>
+      <button>Reserve</button>
+    </form>
+
+    <h2>4. My reservations</h2>
+    <button id="reservations">Get my reservations</button>
+
+    <h2>5. Change reservation status</h2>
+    <form id="status">
+      <label>Reservation ID <input name="reservationId" required></label>
+      <label>Status
+        <select name="status">
+          <option value="checked_out">checked_out</option>
+          <option value="returned">returned</option>
+          <option value="cancelled">cancelled</option>
+        </select>
+      </label>
+      <label>Idempotency key <input name="key" id="status-key" required></label>
+      <button type="button" data-new-key="status-key">New key</button>
+      <button>Update status</button>
+    </form>
+    <p>Use a new key for each new action. Keep the same key when retrying an action.</p>
+
+    <h2>Last response</h2>
+    <pre id="response">No requests yet.</pre>
   </body>
 </html>
