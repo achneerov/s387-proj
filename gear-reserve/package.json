@@ -8,6 +8,7 @@
     "dev": "node --env-file-if-exists=.env --watch src/server.js",
     "db:reset": "node scripts/reset-db.js",
     "mock:email": "node --env-file-if-exists=.env scripts/email-mock.js",
+    "worker:email": "node --env-file-if-exists=.env scripts/email-worker.js",
     "demo:concurrency": "node scripts/concurrency.js",
     "demo:persistence": "node scripts/persistence.js"
   },

@@ -55,6 +55,7 @@ export function createReservation(userId, equipmentId, key, input) {
       starts_at: input.startsAt, ends_at: input.endsAt, status: 'reserved'
     };
     await store.insertReservation(row, connection);
+    await store.enqueueBookingEmail(row.id, connection);
     return { status: 201, body: representation(row) };
   });
 }

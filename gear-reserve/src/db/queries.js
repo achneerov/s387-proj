@@ -11,6 +11,8 @@ export const listReservations = (user_id) => db('reservations').where({ user_id 
 export const findEquipment = (id, connection) => table('equipment', connection).where({ id }).first();
 export const findOwnedReservation = (id, user_id, connection) => table('reservations', connection).where({ id, user_id }).first();
 export const insertReservation = (reservation, connection) => table('reservations', connection).insert(reservation);
+export const enqueueBookingEmail = (reservation_id, connection) =>
+  table('email_outbox', connection).insert({ reservation_id });
 export const updateStatus = (id, status, connection) => table('reservations', connection).where({ id }).update({ status });
 export const findIdempotencyResult = (user_id, idempotency_key, connection) => table('idempotency_results', connection).where({ user_id, idempotency_key }).first();
 export const saveIdempotencyResult = (result, connection) => table('idempotency_results', connection).insert(result);
