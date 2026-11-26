@@ -46,9 +46,9 @@ app.use((req, res) => {
 });
 
 app.use((error, req, res, next) => {
-  if (error.status && error.code) {
+  if (error.status >= 400 && error.status < 500) {
     return res.status(error.status).json({
-      error: { code: error.code, message: error.message }
+      error: { code: error.code || 'INVALID_REQUEST', message: error.message }
     });
   }
   res.status(500).json({
