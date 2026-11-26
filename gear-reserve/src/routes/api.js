@@ -9,7 +9,8 @@ router.post('/auth/login', async (req, res) => {
 });
 
 router.get('/equipment', async (req, res) => {
-  res.json({ items: await listEquipment() });
+  const items = await listEquipment();
+  res.json({ items, count: items.length });
 });
 
 router.get('/me/reservations', async (req, res) => {

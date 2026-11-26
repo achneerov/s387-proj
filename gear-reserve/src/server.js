@@ -1,15 +1,35 @@
 import express from 'express';
+import { randomUUID } from 'node:crypto';
 import path from 'node:path';
 import * as OpenApiValidator from 'express-openapi-validator';
 import api from './routes/api.js';
 import { authenticate } from './services/auth.js';
+import { checkDatabase } from './db/queries.js';
 
 const app = express();
+
+app.use((req, res, next) => {
+  const requestId = randomUUID();
+  res.set('X-Request-Id', requestId);
+  console.log(JSON.stringify({ requestId, method: req.method, path: req.path }));
+  next();
+});
+
+app.get('/health/live', (req, res) => res.json({ status: 'ok' }));
+app.get('/health/ready', async (req, res) => {
+  try {
+    await checkDatabase();
+    res.json({ status: 'ok' });
+  } catch {
+    res.status(503).json({ status: 'unavailable' });
+  }
+});
 
 app.use(express.json());
 app.use(express.static(path.join(import.meta.dirname, '../public')));
 app.use(OpenApiValidator.middleware({
   apiSpec: path.join(import.meta.dirname, '../openapi.yaml'),
+  validateResponses: true,
   validateSecurity: {
     handlers: {
       bearerAuth: async (req) => {

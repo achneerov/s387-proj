@@ -6,6 +6,8 @@ function table(name, connection) {
 
 export const findUserByEmail = (email) => db('users').where({ email }).first();
 export const findUser = (id) => db('users').where({ id }).first();
+export const checkDatabase = () => db('email_outbox').select('reservation_id').limit(1);
+
 export const listEquipment = () => db('equipment').orderBy('id');
 export const listReservations = (user_id) => db('reservations').where({ user_id }).orderBy('starts_at').orderBy('id');
 export const findEquipment = (id, connection) => table('equipment', connection).where({ id }).first();
