@@ -12,7 +12,6 @@ Features include sign-in, equipment booking with double-booking protection, chec
 Use Node.js 26. From the repository root:
 
 ```sh
-cd gear-reserve
 npm ci
 test -f .env || cp .env.example .env
 npm run db:reset
@@ -20,7 +19,7 @@ npm run db:reset
 
 Set `JWT_SECRET` in `.env` to a random value of at least 32 characters before starting the API. `db:reset` deletes existing local bookings and loads demo data.
 
-In three terminals, each in `gear-reserve/`, run one command:
+In three terminals at the repository root, run one command per terminal:
 
 ```sh
 npm start

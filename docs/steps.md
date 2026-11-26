@@ -4,8 +4,8 @@ The live demo and defense are **Dec 1–3, 2026**. The final GitHub tag and PDF 
 
 ## Before tagging
 
-- [ ] Fix the error handler in [server.js](../gear-reserve/src/server.js) so it honors 4xx statuses when an error has no code. Use `INVALID_REQUEST` as the fallback code. Verify a missing token returns `401` and malformed JSON, missing login fields, and a missing idempotency key return `400`.
-- [ ] Complete the [README](../gear-reserve/README.md) with company and product, founder name, stack, features, environment setup, a reproducible way to start the API, worker, and email mock, and demo credentials and commands. Verify the instructions from a clean copy.
+- [ ] Fix the error handler in [server.js](../src/server.js) so it honors 4xx statuses when an error has no code. Use `INVALID_REQUEST` as the fallback code. Verify a missing token returns `401` and malformed JSON, missing login fields, and a missing idempotency key return `400`.
+- [ ] Complete the [README](../README.md) with company and product, founder name, stack, features, environment setup, a reproducible way to start the API, worker, and email mock, and demo credentials and commands. Verify the instructions from a clean copy.
 
 ## Report and live defense
 
@@ -19,4 +19,4 @@ The live demo and defense are **Dec 1–3, 2026**. The final GitHub tag and PDF 
 - [ ] Create and push a Git tag named `final` (or publish a GitHub release named `final`). Confirm it points to the commit you want graded.
 - [ ] Submit the GitHub repository URL on Moodle and submit the final PDF report.
 
-[Course project brief](documents/SOEN387_CourseProject_2026.pdf) · [Milestone demo](../milestone-demo.md)
+[Course project brief](documents/SOEN387_CourseProject_2026.pdf)
